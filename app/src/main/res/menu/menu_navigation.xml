@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navBarHome"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/navBar_home">
+
+    </item>
+
+    <item
+        android:id="@+id/navBarPost"
+        android:icon="@drawable/ic_camera_alt_black_24dp"
+        android:title="@string/navBar_post"></item>
+    <item
+        android:id="@+id/navBarLoot"
+        android:icon="@drawable/ic_attach_money_black_24dp"
+        android:title="@string/navBar_loot"></item>
+
+    <!--<item-->
+        <!--android:title="@string/nav_help"-->
+        <!--android:icon="@drawable/ic_help_outline_black_24dp">-->
+    <!--</item>-->
+</menu>
