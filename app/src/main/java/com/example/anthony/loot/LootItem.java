@@ -7,7 +7,7 @@ public class LootItem {
 
     private int itemID;
     private String name;
-    //photo
+    private byte[] image;
     private String itemDescription;
     private GregorianCalendar postDate;
     private int daysToKeep;
@@ -28,19 +28,29 @@ public class LootItem {
         this.itemDescription = itemDescription;
     }
 
-//    public LootItem(String name, PHOTO){
-//        this.name = name;
-//        this.postDate = new GregorianCalendar();
-//        this.daysToKeep = daysToKeep;
-//        this.yearsToKeep = yearsToKeep;
-//    }
+    public LootItem(String name, int daysToKeep, int yearsToKeep, byte[] image){
+        this.name = name;
+        this.postDate = new GregorianCalendar();
+        this.daysToKeep = daysToKeep;
+        this.yearsToKeep = yearsToKeep;
+        this.image = image;
+    }
 
-//    public LootItem(String name, int daysToKeep, int yearsToKeep, String description, PHOTO){
-//        this.name = name;
-//        this.postDate = new GregorianCalendar();
-//        this.daysToKeep = daysToKeep;
-//        this.yearsToKeep = yearsToKeep;
-//    }
+    public LootItem(String name, int daysToKeep, int yearsToKeep, String description, byte[] image){
+        this.name = name;
+        this.postDate = new GregorianCalendar();
+        this.daysToKeep = daysToKeep;
+        this.yearsToKeep = yearsToKeep;
+        this.image = image;
+    }
+
+    public int getItemID() {
+        return itemID;
+    }
+
+    public void setItemID(int itemID) {
+        this.itemID = itemID;
+    }
 
     public String getName() {
         return name;
@@ -80,6 +90,14 @@ public class LootItem {
 
     public void setYearsToKeep(int yearsToKeep) {
         this.yearsToKeep = yearsToKeep;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     private GregorianCalendar getEndDate() {
