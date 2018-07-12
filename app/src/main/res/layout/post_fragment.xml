@@ -1,37 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright">
+    android:background="@drawable/bg">
 
     <FrameLayout
-        android:id="@+id/postFragment"
+        android:id="@+id/lootFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageLootItem"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginRight="156dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="50dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/editTextName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:srcCompat="@drawable/ic_camera_alt_black_24dp" />
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginLeft="99dp"
+        android:layout_marginRight="99dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/editTextDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageLootItem" />
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="85dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginLeft="99dp"
+        android:layout_marginRight="99dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textLongMessage"
+        app:layout_constraintBottom_toTopOf="@+id/editTextDaysToKeep"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+
+    <EditText
+        android:id="@+id/editTextDaysToKeep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginLeft="98dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Days to keep item"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/editTextYearsToKeep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"/>
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 
-    <TextView
-        android:id="@+id/textView6"
+    <EditText
+        android:id="@+id/editTextYearsToKeep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Post Fragment"
-        android:textSize="18sp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginLeft="98dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Years to keep item"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/addButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDaysToKeep" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/background_dark"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextYearsToKeep" />
+
 </android.support.constraint.ConstraintLayout>

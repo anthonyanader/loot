@@ -19,26 +19,36 @@ public class LootItem {
         this.daysToKeep = daysToKeep;
         this.yearsToKeep = yearsToKeep;
     }
+//
+//    public LootItem(String name, int daysToKeep, int yearsToKeep, String itemDescription){
+//        this.name = name;
+//        this.postDate = new GregorianCalendar();
+//        this.daysToKeep = daysToKeep;
+//        this.yearsToKeep = yearsToKeep;
+//        this.itemDescription = itemDescription;
+//    }
+//
+//    public LootItem(String name, int daysToKeep, int yearsToKeep, byte[] image){
+//        this.name = name;
+//        this.postDate = new GregorianCalendar();
+//        this.daysToKeep = daysToKeep;
+//        this.yearsToKeep = yearsToKeep;
+//        this.image = image;
+//    }
+//
+//    public LootItem(String name, int daysToKeep, int yearsToKeep, String description, byte[] image){
+//        this.name = name;
+//        this.postDate = new GregorianCalendar();
+//        this.daysToKeep = daysToKeep;
+//        this.yearsToKeep = yearsToKeep;
+//        this.image = image;
+//    }
 
-    public LootItem(String name, int daysToKeep, int yearsToKeep, String itemDescription){
+    public LootItem(int itemID, String name, byte[] image, String itemDescription, int daysToKeep, int yearsToKeep, long postDate){
+        this.itemID = itemID;
         this.name = name;
-        this.postDate = new GregorianCalendar();
-        this.daysToKeep = daysToKeep;
-        this.yearsToKeep = yearsToKeep;
         this.itemDescription = itemDescription;
-    }
-
-    public LootItem(String name, int daysToKeep, int yearsToKeep, byte[] image){
-        this.name = name;
-        this.postDate = new GregorianCalendar();
-        this.daysToKeep = daysToKeep;
-        this.yearsToKeep = yearsToKeep;
-        this.image = image;
-    }
-
-    public LootItem(String name, int daysToKeep, int yearsToKeep, String description, byte[] image){
-        this.name = name;
-        this.postDate = new GregorianCalendar();
+        this.postDate.setTimeInMillis(postDate);
         this.daysToKeep = daysToKeep;
         this.yearsToKeep = yearsToKeep;
         this.image = image;
