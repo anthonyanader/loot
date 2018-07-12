@@ -8,7 +8,7 @@
     android:background="@android:color/holo_blue_dark">
 
     <FrameLayout
-        android:id="@+id/lootFragment"
+        android:id="@+id/settings_fragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +28,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Loot Fragment"
+        android:text="Settings Fragment"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

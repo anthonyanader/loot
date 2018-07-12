@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Loot</string>
     <string name="navBar_home">Home</string>
-    <string name="navBar_loot">Loot</string>
     <string name="navBar_post">Post</string>
-    <string name="navBar_help">Help</string>
+    <string name="navBar_settings">Settings</string>
 </resources>
