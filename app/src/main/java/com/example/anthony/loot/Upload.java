@@ -10,7 +10,7 @@ public class Upload {
         //needed for firebase
     }
 
-    public Upload(String name, String description,String timer, String imageUrl){
+    public Upload(String name, String description, String timer, String imageUrl){
         if(name.trim().equals("")){
             name = "No name";
         }

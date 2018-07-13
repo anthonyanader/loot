@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
@@ -46,6 +47,8 @@ public class PostFragment extends Fragment {
 
     private StorageReference mStorageReference;
     private DatabaseReference mDatabaseReference;
+
+    private StorageTask mUploadTask;
 
     @Nullable
     @Override
@@ -74,7 +77,12 @@ public class PostFragment extends Fragment {
         mButtonPostItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadFile();
+                if(mUploadTask != null && mUploadTask.isInProgress()){
+                    Toast.makeText(getActivity(), "Upload in progress",Toast.LENGTH_SHORT).show();
+
+                } else {
+                    uploadFile();
+                }
             }
         });
 
@@ -101,19 +109,11 @@ public class PostFragment extends Fragment {
         }
     }
 
-    private String getFileExtension(Uri uri){
-        ContentResolver cR = getActivity().getContentResolver(); //how to fix getActivity() issues in fragments
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-
-        return mime.getMimeTypeFromExtension(cR.getType(uri));
-    }
-
     private void uploadFile(){
         if(mImageUri != null){
-            StorageReference fileReference = mStorageReference.child(System.currentTimeMillis()
-                    + "." + getFileExtension(mImageUri));
+            StorageReference fileReference = mStorageReference.child(String.valueOf(System.currentTimeMillis()));
 
-            fileReference.putFile(mImageUri)
+            mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -123,7 +123,7 @@ public class PostFragment extends Fragment {
                                 public void run() {
                                     mProgressBar.setProgress(0);
                                 }
-                            },500);
+                            },1500);
 
                             Toast.makeText(getActivity(), "Upload successful", Toast.LENGTH_SHORT).show();
                             Upload upload = new Upload(mEditTextName.getText().toString().trim(),
@@ -149,7 +149,7 @@ public class PostFragment extends Fragment {
                         }
                     });
         } else {
-            Toast.makeText(this.getActivity(), "No file selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "No file selected", Toast.LENGTH_SHORT).show();
 
         }
     }
