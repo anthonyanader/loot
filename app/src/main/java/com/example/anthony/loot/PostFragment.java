@@ -129,7 +129,7 @@ public class PostFragment extends Fragment {
                             Upload upload = new Upload(mEditTextName.getText().toString().trim(),
                                     mEditTextDescription.getText().toString(),
                                     mEditTextTimer.getText().toString().trim(),
-                                    taskSnapshot.getUploadSessionUri().toString());
+                                    taskSnapshot.getDownloadUrl().toString());
                             String uploadId = mDatabaseReference.push().getKey();
                             mDatabaseReference.child(uploadId).setValue(upload);
                         }
