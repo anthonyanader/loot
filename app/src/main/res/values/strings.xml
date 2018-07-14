@@ -3,4 +3,20 @@
     <string name="navBar_home">Home</string>
     <string name="navBar_post">Post</string>
     <string name="navBar_settings">Settings</string>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>French</item>
+        <item>Chinese</item>
+        <item>Spanish</item>
+        <item>Arabic</item>
+        <item>Italian</item>
+        <item>Portuguese</item>
+        <item>Japanese</item>
+        <item>Russian</item>
+        <item>Bengali</item>
+        <item>Hindi</item>
+        <item>Urdu</item>
+        <item>Farsi</item>
+    </string-array>
 </resources>
