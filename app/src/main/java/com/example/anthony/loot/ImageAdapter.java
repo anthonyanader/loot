@@ -33,13 +33,13 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         Upload uploadCurrent= mUploads.get(position);
-        holder.textViewName.setText(uploadCurrent.getmName());
-        System.out.println(uploadCurrent.getmImageUrl());
+        holder.textViewCardName.setText(uploadCurrent.getmName());
+        holder.textViewCardTimer.setText(uploadCurrent.getmTimer());
         Picasso.get()
                 .load(uploadCurrent.getmImageUrl())
                 .fit()
                 .centerCrop()
-                .into(holder.imageView);
+                .into(holder.imageViewCard);
     }
 
     @Override
@@ -48,16 +48,18 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewName;
-        public ImageView imageView;
+        public TextView textViewCardName;
+        public TextView textViewCardTimer;
+        public ImageView imageViewCard;
+
 
 
         public ImageViewHolder(View itemView) {
             super(itemView);
 
-            textViewName = itemView.findViewById(R.id.text_view_name);
-            imageView = itemView.findViewById(R.id.image_view_upload);
-
+            textViewCardName = itemView.findViewById(R.id.text_view_card_name);
+            textViewCardTimer = itemView.findViewById(R.id.text_view_card_timer);
+            imageViewCard = itemView.findViewById(R.id.image_view_card_upload);
         }
     }
 }

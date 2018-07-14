@@ -1,5 +1,6 @@
 package com.example.anthony.loot;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,10 +25,10 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private ImageAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     private DatabaseReference mDatabaseReference;
     private List<Upload> mUploads;
-
 
     @Nullable
     @Override
@@ -50,7 +51,7 @@ public class HomeFragment extends Fragment {
                     mUploads.add(upload);
                 }
 
-                mAdapter = new ImageAdapter(getActivity(), mUploads);
+                mAdapter = new ImageAdapter(getContext(), mUploads);
                 mRecyclerView.setAdapter(mAdapter);
             }
 
