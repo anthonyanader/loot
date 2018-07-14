@@ -14,7 +14,7 @@
         android:layout_height="187dp"
         android:layout_centerHorizontal="true"
         android:clickable="true"
-        android:background="@drawable/photo_placeholder" />
+        app:srcCompat="@drawable/photo_placeholder" />
 
     <EditText
         android:id="@+id/edit_text_name"
@@ -49,6 +49,7 @@
         android:layout_marginBottom="148dp"
         android:gravity="center"
         android:hint="Time"
+        android:inputType="number"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary" />
 

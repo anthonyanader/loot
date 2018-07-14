@@ -112,6 +112,9 @@ public class PostFragment extends Fragment {
     private void uploadFile(){
         if(mImageUri != null){
             StorageReference fileReference = mStorageReference.child(String.valueOf(System.currentTimeMillis()));
+            final String description = mEditTextDescription.getText().toString();
+            final String name = mEditTextName.getText().toString().trim();
+            final String timer = mEditTextTimer.getText().toString().trim();
 
             mUploadTask = fileReference.putFile(mImageUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -126,9 +129,9 @@ public class PostFragment extends Fragment {
                             },1500);
 
                             Toast.makeText(getActivity(), "Upload successful", Toast.LENGTH_SHORT).show();
-                            Upload upload = new Upload(mEditTextName.getText().toString().trim(),
-                                    mEditTextDescription.getText().toString(),
-                                    mEditTextTimer.getText().toString().trim(),
+                            Upload upload = new Upload(name,
+                                    description,
+                                    timer,
                                     taskSnapshot.getDownloadUrl().toString());
                             String uploadId = mDatabaseReference.push().getKey();
                             mDatabaseReference.child(uploadId).setValue(upload);
@@ -150,8 +153,11 @@ public class PostFragment extends Fragment {
                     });
         } else {
             Toast.makeText(getActivity(), "No file selected", Toast.LENGTH_SHORT).show();
-
         }
+        mEditTextName.setText("");
+        mEditTextDescription.setText("");
+        mEditTextTimer.setText("");
+        mUploadPicture.setImageResource(R.drawable.photo_placeholder);
     }
 
 
