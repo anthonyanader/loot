@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -45,6 +48,7 @@ public class HomeFragment extends Fragment {
 
         buildRecyclerView();
 
+
         mUploads = new ArrayList<>();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("uploads");
 
@@ -58,6 +62,7 @@ public class HomeFragment extends Fragment {
 
                 mAdapter = new ImageAdapter(getContext(), mUploads);
                 mRecyclerView.setAdapter(mAdapter);
+                sortRecyclerView();
             }
 
             @Override
@@ -103,5 +108,15 @@ public class HomeFragment extends Fragment {
         }
 
         mAdapter.filterList(filteredList);
+    }
+
+    private void sortRecyclerView(){
+        Collections.sort(mUploads, new Comparator<Upload>() {
+            @Override
+            public int compare(Upload o1, Upload o2) {
+                return o1.getmTimer().compareTo(o2.getmTimer());
+            }
+        });
+
     }
 }

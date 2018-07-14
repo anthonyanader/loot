@@ -1,6 +1,8 @@
 package com.example.anthony.loot;
 
+import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,8 +11,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +57,7 @@ public class PostFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.post_fragment, container,false);
+        View view = inflater.inflate(R.layout.post_fragment, container, false);
 
         mEditTextName = view.findViewById(R.id.edit_text_name);
         mEditTextDescription = view.findViewById(R.id.edit_text_description);
@@ -77,8 +81,8 @@ public class PostFragment extends Fragment {
         mButtonPostItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mUploadTask != null && mUploadTask.isInProgress()){
-                    Toast.makeText(getActivity(), "Upload in progress",Toast.LENGTH_SHORT).show();
+                if (mUploadTask != null && mUploadTask.isInProgress()) {
+                    Toast.makeText(getActivity(), "Upload in progress", Toast.LENGTH_SHORT).show();
 
                 } else {
                     uploadFile();
@@ -89,7 +93,7 @@ public class PostFragment extends Fragment {
         return view;
     }
 
-    private void openFileChooser(){
+    private void openFileChooser() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -101,7 +105,7 @@ public class PostFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
-                && data != null && data.getData() != null){
+                && data != null && data.getData() != null) {
 
             mImageUri = data.getData();
 
@@ -109,8 +113,8 @@ public class PostFragment extends Fragment {
         }
     }
 
-    private void uploadFile(){
-        if(mImageUri != null){
+    private void uploadFile() {
+        if (mImageUri != null) {
             StorageReference fileReference = mStorageReference.child(String.valueOf(System.currentTimeMillis()));
 
             mUploadTask = fileReference.putFile(mImageUri)
@@ -128,7 +132,7 @@ public class PostFragment extends Fragment {
                                     mUploadPicture.setImageResource(R.drawable.photo_placeholder);
                                     mImageUri = null;
                                 }
-                            },1500);
+                            }, 1500);
 
                             Toast.makeText(getActivity(), "Upload successful", Toast.LENGTH_SHORT).show();
                             Upload upload = new Upload(mEditTextName.getText().toString().trim(),
@@ -157,6 +161,4 @@ public class PostFragment extends Fragment {
             Toast.makeText(getActivity(), "No file selected", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 }
