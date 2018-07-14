@@ -2,6 +2,7 @@ package com.example.anthony.loot;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,7 +28,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickListener {
 
     private RecyclerView mRecyclerView;
     private ImageAdapter mAdapter;
@@ -48,8 +49,8 @@ public class HomeFragment extends Fragment {
 
         buildRecyclerView();
 
-
         mUploads = new ArrayList<>();
+
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("uploads");
 
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -87,8 +88,6 @@ public class HomeFragment extends Fragment {
                 filter(s.toString());
             }
         });
-
-
         return view;
     }
 
@@ -118,5 +117,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        mAdapter.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        Toast.makeText(getActivity(),"Check @: " + position, Toast.LENGTH_SHORT).show();
     }
 }
