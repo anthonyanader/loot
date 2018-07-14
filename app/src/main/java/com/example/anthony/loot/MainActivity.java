@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new PostFragment();
                             break;
 
-                        case R.id.navBarLoot:
-                            selectedFragment = new LootFragment();
+                        case R.id.navBarSettings:
+                            selectedFragment = new SettingsFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityFragment,

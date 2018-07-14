@@ -14,9 +14,9 @@
         android:icon="@drawable/ic_camera_alt_black_24dp"
         android:title="@string/navBar_post"></item>
     <item
-        android:id="@+id/navBarLoot"
+        android:id="@+id/navBarSettings"
         android:icon="@drawable/ic_attach_money_black_24dp"
-        android:title="@string/navBar_loot"></item>
+        android:title="@string/navBar_settings"></item>
 
     <!--<item-->
         <!--android:title="@string/nav_help"-->

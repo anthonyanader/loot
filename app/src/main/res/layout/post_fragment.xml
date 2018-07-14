@@ -1,37 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright">
+    android:background="@drawable/loot_main_bg"
+    android:padding="16dp">
 
-    <FrameLayout
-        android:id="@+id/postFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"/>
+    <ImageView
+        android:id="@+id/image_view_upload_pic"
+        android:layout_width="187dp"
+        android:layout_height="187dp"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:background="@drawable/photo_placeholder" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/edit_text_name"
+        android:layout_width="331dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Post Fragment"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="227dp"
+        android:gravity="center"
+        android:hint="Name"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/edit_text_description"
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="209dp"
+        android:gravity="center"
+        android:hint="Description"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/edit_text_time"
+        android:layout_width="331dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="148dp"
+        android:gravity="center"
+        android:hint="Time"
+        android:textColor="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="91dp" />
+
+    <Button
+        android:id="@+id/button_post_item"
+        android:layout_width="170dp"
+        android:layout_height="43dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
+        android:background="@drawable/post_button" />
+
+
+</RelativeLayout>
