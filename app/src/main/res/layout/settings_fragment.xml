@@ -35,13 +35,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/faq"
-        app:layout_constraintBottom_toTopOf="@+id/languageSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/languageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/helpButton" />
 
-    <Spinner
-        android:id="@+id/languageSpinner"
+    <Button
+        android:id="@+id/languageButton"
         android:layout_width="218dp"
         android:layout_height="49dp"
         android:layout_marginBottom="30dp"
@@ -71,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/settings_fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/languageSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/languageButton" />
 
     <FrameLayout
         android:id="@+id/settings_fragment"

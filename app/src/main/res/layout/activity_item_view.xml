@@ -1,92 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/loot_main_bg"
-    tools:context=".ItemView">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <ImageView
         android:id="@+id/image_view_item"
         android:layout_width="187dp"
         android:layout_height="187dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        android:layout_gravity="center_horizontal"
         app:srcCompat="@drawable/photo_placeholder" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="228dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal">
 
         <Button
             android:id="@+id/button_donate"
             android:layout_width="97dp"
             android:layout_height="43dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/donate_button"
-            app:layout_constraintEnd_toStartOf="@+id/button_recycle"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="221dp" />
+            android:background="@drawable/donate_button" />
 
         <Button
             android:id="@+id/button_recycle"
             android:layout_width="97dp"
             android:layout_height="43dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/recycle_button"
-            app:layout_constraintBaseline_toBaselineOf="@+id/button_donate"
-            app:layout_constraintEnd_toStartOf="@+id/button_sell"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button_donate" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/recycle_button" />
 
         <Button
             android:id="@+id/button_sell"
             android:layout_width="97dp"
             android:layout_height="43dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/sell_button"
-            app:layout_constraintBaseline_toBaselineOf="@+id/button_recycle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/button_recycle" />
-
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/sell_button" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="163dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/text_view_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:textColor="#FFFFFF"
             android:text="Name"
             android:textSize="35dp" />
 
@@ -94,15 +66,15 @@
             android:id="@+id/text_view_item_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:text="Description"
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/text_view_item_time"
+            android:id="@+id/text_view_item_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
             android:text="Timer"
             android:textSize="20dp" />
 
@@ -111,10 +83,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="33dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
@@ -122,14 +92,14 @@
             android:id="@+id/button_edit"
             android:layout_width="157dp"
             android:layout_height="43dp"
-            android:background="@drawable/edit_button" />
+            android:background="@drawable/reset_timer" />
 
         <Button
             android:id="@+id/button_delete"
-            android:layout_marginLeft="20dp"
             android:layout_width="157dp"
             android:layout_height="43dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:background="@drawable/delete_button" />
     </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>

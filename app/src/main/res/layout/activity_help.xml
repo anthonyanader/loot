@@ -4,15 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Help Fragment"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="272dp" />
+    android:layout_height="match_parent"
+    android:background="@drawable/help_page">
 
     <FrameLayout
         android:id="@+id/helpFragment"

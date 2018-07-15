@@ -12,14 +12,14 @@
     <item
         android:id="@+id/navBarPost"
         android:icon="@drawable/ic_camera_alt_black_24dp"
-        android:title="@string/navBar_post"></item>
+        android:title="@string/navBar_post">
+
+    </item>
     <item
         android:id="@+id/navBarSettings"
-        android:icon="@drawable/ic_attach_money_black_24dp"
-        android:title="@string/navBar_settings"></item>
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/navBar_settings">
 
-    <!--<item-->
-        <!--android:title="@string/nav_help"-->
-        <!--android:icon="@drawable/ic_help_outline_black_24dp">-->
-    <!--</item>-->
+    </item>
+
 </menu>

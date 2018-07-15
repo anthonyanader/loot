@@ -131,6 +131,7 @@ public class PostFragment extends Fragment {
                                     mEditTextTimer.setText("");
                                     mUploadPicture.setImageResource(R.drawable.photo_placeholder);
                                     mImageUri = null;
+                                    mProgressBar.setVisibility(View.INVISIBLE);
                                 }
                             }, 1500);
 
@@ -155,6 +156,7 @@ public class PostFragment extends Fragment {
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
                             mProgressBar.setProgress((int) progress);
+                            mProgressBar.setVisibility(View.VISIBLE);
                         }
                     });
         } else {
