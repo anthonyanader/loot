@@ -58,6 +58,7 @@
             android:id="@+id/text_view_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
             android:text="Name"
             android:textSize="35dp" />
 
@@ -91,7 +92,7 @@
             android:id="@+id/button_edit"
             android:layout_width="157dp"
             android:layout_height="43dp"
-            android:background="@drawable/edit_button" />
+            android:background="@drawable/reset_timer" />
 
         <Button
             android:id="@+id/button_delete"

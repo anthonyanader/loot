@@ -2,6 +2,7 @@ package com.example.anthony.loot;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -98,6 +99,7 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                     Upload upload = postSnapshot.getValue(Upload.class);
+                    upload.setmKey(dataSnapshot.getKey());
                     mUploads.add(upload);
                 }
 
@@ -112,6 +114,44 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
                 Toast.makeText(getActivity(),databaseError.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+
+        mDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Item deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mEditButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mTimer.setText("365 days left");
+                Toast.makeText(getActivity(), "Timer Reset", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        mRecycleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickedButton("https://www.terracycle.ca/en-CA/");
+
+            }
+        });
+
+        mDonateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickedButton("https://www.1800gotjunk.com/ca_en/locations/junk-removal-ottawa");
+            }
+        });
+
+        mSellButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickedButton("https://www.kijiji.ca/h-ottawa/1700185");
+            }
+        });
+
 
         view.clearFocus();
         return view;
@@ -194,5 +234,11 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
             mViewFlipper.setDisplayedChild(position);
         }
 
+    }
+
+    private void clickedButton(String url){
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        startActivity(intent);
     }
 }
