@@ -4,9 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    android:clickable="true"
     app:cardBackgroundColor="@android:color/transparent"
-    app:cardCornerRadius="5dp"
-    android:clickable="true">
+    app:cardCornerRadius="5dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,20 +29,21 @@
             android:layout_toEndOf="@+id/image_view_card_upload"
             android:layout_toRightOf="@+id/image_view_card_upload"
             android:text="Line 1"
-            android:textColor="@android:color/black"
+            android:textColor="#282828"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_view_card_timer"
+            android:id="@+id/text_view_card_item_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/image_view_card_upload"
+            android:layout_alignStart="@id/image_view_card_upload"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@+id/image_view_card_upload"
-            android:layout_toRightOf="@+id/image_view_card_upload"
+            android:layout_marginLeft="110dp"
+            android:layout_marginStart="110dp"
             android:text="Line 2"
+            android:textColor="#FFFFFF"
             android:textSize="18dp" />
 
 
