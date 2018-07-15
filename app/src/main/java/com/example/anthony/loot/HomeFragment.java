@@ -15,8 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,14 +45,46 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
 
     private List<Upload> mUploads;
     private EditText mEditTextSearchBar;
+    private ViewFlipper mViewFlipper;
+
+    private ImageView mImageView;
+
+    private Button mDonateButton;
+    private Button mRecycleButton;
+    private Button mSellButton;
+
+    private TextView mName;
+    private TextView mDescription;
+    private TextView mTimer;
+
+    private Button mEditButton;
+    private Button mDeleteButton;
+
+
+    private boolean mDataLoaded;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment, container, false);
+        mDataLoaded = false;
 
         mRecyclerView = view.findViewById(R.id.recycler_view);
         mEditTextSearchBar = view.findViewById(R.id.edit_text_search_bar);
+        mViewFlipper = view.findViewById(R.id.view_flipper);
+
+        mDonateButton = view.findViewById(R.id.button_donate);
+        mRecycleButton = view.findViewById(R.id.button_recycle);
+        mSellButton = view.findViewById(R.id.button_sell);
+
+        mImageView = view.findViewById(R.id.image_view_item);
+
+        mName = view.findViewById(R.id.text_view_item_name);
+        mDescription = view.findViewById(R.id.text_view_item_description);
+        mTimer  = view.findViewById(R.id.text_view_item_timer);
+
+        mEditButton = view.findViewById(R.id.button_edit);
+        mDeleteButton = view.findViewById(R.id.button_delete);
 
         buildRecyclerView();
 
@@ -61,13 +98,13 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                     Upload upload = postSnapshot.getValue(Upload.class);
-                    upload.setmKey(postSnapshot.getKey());
                     mUploads.add(upload);
                 }
 
                 mAdapter = new ImageAdapter(getContext(), mUploads);
                 mRecyclerView.setAdapter(mAdapter);
                 sortRecyclerView();
+                loadSearchFunctionality();
             }
 
             @Override
@@ -76,22 +113,7 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
             }
         });
 
-        mEditTextSearchBar.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                filter(s.toString());
-            }
-        });
+        view.clearFocus();
         return view;
     }
 
@@ -99,6 +121,7 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
     }
 
     private void filter(String text){
@@ -127,11 +150,49 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
     @Override
     public void onItemClick(View view, int position) {
         Upload selectedItem = mUploads.get(position);
-        String selectedKey = selectedItem.getmKey();
 
+        mViewFlipper.showNext();
+        populateSelectedItemView(selectedItem);
 
-        Intent intent = new Intent(getActivity(), ItemView.class);
-        intent.putExtra("ITEM_KEY",selectedKey);
-        startActivity(intent);
+    }
+
+    private void populateSelectedItemView(Upload selectedItem) {
+        Picasso.get()
+                .load(selectedItem.getmImageUrl())
+                .fit()
+                .centerCrop()
+                .into(mImageView);
+        mName.setText(selectedItem.getmName());
+        mDescription.setText(selectedItem.getmDescription());
+        mTimer.setText(selectedItem.getmTimer() + " days left");
+    }
+
+    private void loadSearchFunctionality(){
+        if(!mDataLoaded) {
+            mDataLoaded = true;
+            mEditTextSearchBar.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    filter(s.toString());
+                }
+            });
+        }
+    }
+
+    public void setViewFlipper(int position){
+        if (mViewFlipper!=null){
+            mViewFlipper.setDisplayedChild(position);
+        }
+
     }
 }

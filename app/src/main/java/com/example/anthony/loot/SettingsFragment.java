@@ -21,13 +21,7 @@ public class SettingsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.settings_fragment, container, false);
 
-        Spinner spinner = view.findViewById(R.id.languageSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
-                R.array.languages, R.layout.my_spinner_style);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter);
-
+        Button mLanguageButton = view.findViewById(R.id.languageButton);
         Button helpButton = view.findViewById(R.id.helpButton);
         Button faqButton = view.findViewById(R.id.faqButton);
         Button eraseButton = view.findViewById(R.id.eraseButton);

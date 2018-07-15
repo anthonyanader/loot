@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    private Fragment selectedFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +24,15 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView mBottomNavigationView = findViewById(R.id.bottomNavBar);
         mBottomNavigationView.setOnNavigationItemSelectedListener(bottomNavBarListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityFragment,
-                new HomeFragment()).commit();
+        selectedFragment = new HomeFragment();
+        loadCurrentFragment();
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener bottomNavBarListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                    Fragment selectedFragment = null;
 
                     switch(item.getItemId()){
                         case R.id.navBarHome:
@@ -47,11 +47,13 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new SettingsFragment();
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityFragment,
-                            selectedFragment).commit();
-
+                    loadCurrentFragment();
                     return true;
                 }
             };
-    
+
+    private void loadCurrentFragment(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.mainActivityFragment,
+                selectedFragment).commit();
+    }
 }

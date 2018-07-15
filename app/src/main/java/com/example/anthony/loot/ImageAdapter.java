@@ -37,7 +37,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
         Upload uploadCurrent = mUploads.get(position);
         holder.textViewCardName.setText(uploadCurrent.getmName());
-        holder.textViewCardTimer.setText(uploadCurrent.getmTimer());
+        holder.textViewCardTimer.setText(uploadCurrent.getmTimer() + " days left");
         Picasso.get()
                 .load(uploadCurrent.getmImageUrl())
                 .fit()
@@ -59,7 +59,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             super(itemView);
 
             textViewCardName = itemView.findViewById(R.id.text_view_card_name);
-            textViewCardTimer = itemView.findViewById(R.id.text_view_card_timer);
+            textViewCardTimer = itemView.findViewById(R.id.text_view_card_item_timer);
             imageViewCard = itemView.findViewById(R.id.image_view_card_upload);
 
             itemView.setOnClickListener(this);
