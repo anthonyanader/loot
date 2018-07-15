@@ -5,17 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/holo_red_light">
-    
+    android:background="@drawable/loot_main_bg">
+
     <EditText
-        android:id="@+id/edit_text_search"
+        android:id="@+id/edit_text_search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        android:hint="Search item"
+        android:focusable="false"
+        android:focusedByDefault="false"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:scrollbars="vertical"
+        android:background="@drawable/loot_main_bg"/>
 
 </LinearLayout>

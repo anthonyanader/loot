@@ -11,16 +11,19 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
     private Context mContext;
     private List<Upload> mUploads;
+    private OnItemClickListener mListener;
 
-    public ImageAdapter(Context context, List<Upload> uploads){
+    public ImageAdapter(Context context, List<Upload> uploads) {
         mContext = context;
         mUploads = uploads;
     }
+
 
     @NonNull
     @Override
@@ -32,14 +35,14 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        Upload uploadCurrent= mUploads.get(position);
-        holder.textViewName.setText(uploadCurrent.getmName());
-        System.out.println(uploadCurrent.getmImageUrl());
+        Upload uploadCurrent = mUploads.get(position);
+        holder.textViewCardName.setText(uploadCurrent.getmName());
+        holder.textViewCardTimer.setText(uploadCurrent.getmTimer());
         Picasso.get()
                 .load(uploadCurrent.getmImageUrl())
                 .fit()
                 .centerCrop()
-                .into(holder.imageView);
+                .into(holder.imageViewCard);
     }
 
     @Override
@@ -47,17 +50,45 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         return mUploads.size();
     }
 
-    public class ImageViewHolder extends RecyclerView.ViewHolder {
-        public TextView textViewName;
-        public ImageView imageView;
-
+    public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public TextView textViewCardName;
+        public TextView textViewCardTimer;
+        public ImageView imageViewCard;
 
         public ImageViewHolder(View itemView) {
             super(itemView);
 
-            textViewName = itemView.findViewById(R.id.text_view_name);
-            imageView = itemView.findViewById(R.id.image_view_upload);
+            textViewCardName = itemView.findViewById(R.id.text_view_card_name);
+            textViewCardTimer = itemView.findViewById(R.id.text_view_card_timer);
+            imageViewCard = itemView.findViewById(R.id.image_view_card_upload);
+
+            itemView.setOnClickListener(this);
+
 
         }
+
+        @Override
+        public void onClick(View v) {
+            if(mListener != null){
+                int position = getAdapterPosition();
+                if(position != RecyclerView.NO_POSITION){
+                    mListener.onItemClick(v,position);
+                }
+            }
+        }
     }
+
+    public void filterList(ArrayList<Upload> filteredList){
+        mUploads = filteredList;
+        notifyDataSetChanged();
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(View view, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
+
 }
