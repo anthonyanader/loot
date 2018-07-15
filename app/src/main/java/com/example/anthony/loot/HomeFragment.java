@@ -1,6 +1,7 @@
 package com.example.anthony.loot;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,14 +31,14 @@ import java.util.Comparator;
 import java.util.List;
 
 public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickListener {
-
     private RecyclerView mRecyclerView;
     private ImageAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     private DatabaseReference mDatabaseReference;
-    private List<Upload> mUploads;
+    private FirebaseStorage mStorage;
 
+    private List<Upload> mUploads;
     private EditText mEditTextSearchBar;
 
     @Nullable
@@ -51,6 +53,7 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
 
         mUploads = new ArrayList<>();
 
+        mStorage = FirebaseStorage.getInstance();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("uploads");
 
         mDatabaseReference.addValueEventListener(new ValueEventListener() {
@@ -58,6 +61,7 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
                     Upload upload = postSnapshot.getValue(Upload.class);
+                    upload.setmKey(postSnapshot.getKey());
                     mUploads.add(upload);
                 }
 
@@ -122,6 +126,12 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getActivity(),"Check @: " + position, Toast.LENGTH_SHORT).show();
+        Upload selectedItem = mUploads.get(position);
+        String selectedKey = selectedItem.getmKey();
+
+
+        Intent intent = new Intent(getActivity(), ItemView.class);
+        intent.putExtra("ITEM_KEY",selectedKey);
+        startActivity(intent);
     }
 }

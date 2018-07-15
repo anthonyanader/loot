@@ -1,10 +1,13 @@
 package com.example.anthony.loot;
 
+import com.google.firebase.database.Exclude;
+
 public class Upload {
     private String mName;
     private String mDescription;
     private String mImageUrl;
     private String mTimer;
+    private String mKey;
 
     public Upload(){
         //needed for firebase
@@ -54,4 +57,13 @@ public class Upload {
         this.mImageUrl = mImageUrl;
     }
 
+    @Exclude
+    public String getmKey() {
+        return mKey;
+    }
+
+    @Exclude
+    public void setmKey(String mKey) {
+        this.mKey = mKey;
+    }
 }
