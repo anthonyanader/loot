@@ -91,6 +91,7 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
 
         mUploads = new ArrayList<>();
 
+
         mStorage = FirebaseStorage.getInstance();
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("uploads");
 
@@ -102,11 +103,9 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
                     upload.setmKey(dataSnapshot.getKey());
                     mUploads.add(upload);
                 }
-
                 mAdapter = new ImageAdapter(getContext(), mUploads);
                 mRecyclerView.setAdapter(mAdapter);
                 sortRecyclerView();
-                loadSearchFunctionality();
             }
 
             @Override
@@ -154,6 +153,7 @@ public class HomeFragment extends Fragment implements ImageAdapter.OnItemClickLi
 
 
         view.clearFocus();
+        loadSearchFunctionality();
         return view;
     }
 
